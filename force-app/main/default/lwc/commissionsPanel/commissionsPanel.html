@@ -1,0 +1,43 @@
+<template>
+    <lightning-card title={title}>
+        <lightning-button if:true={displaySaveButtons} label="Cancel" slot="actions" class="slds-var-m-right_small" onclick={refresh}></lightning-button>
+        <lightning-button if:true={displaySaveButtons} label="Save" slot="actions" variant="brand" onclick={handleSave}></lightning-button>
+        <div if:true={displayCommissions} class="slds-var-m-around_medium slds-var-m-top_small">
+            <lightning-spinner if:true={loading} variant="brand"></lightning-spinner>
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="3" padding="around-small">
+                    <b>Agents Name</b>
+                </lightning-layout-item>
+                <lightning-layout-item size="8">
+                    <lightning-layout>
+                        <lightning-layout-item size="4" padding="around-small">
+                            <b>Default Rate</b>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="4" padding="around-small">
+                            <b>Opportunity Rate</b>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="4" padding="around-small">
+                            <b>Commission</b>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-layout-item>
+                <lightning-layout-item size="1" padding="around-small">
+                </lightning-layout-item>
+            </lightning-layout>
+
+            <template if:true={commissions} for:each={commissions} for:item="commission">
+                <c-commissions-line
+                    key={commission.Id}
+                    commission={commission}
+                    oncommissionchange={handleChange}
+                    oncommissiondelete={handleDelete}
+                    onrefresh={refresh}>
+                </c-commissions-line>
+            </template>
+        </div>
+
+        <div if:false={displayCommissions} class="slds-var-m-around_medium">
+            No agents added to this opportunity, you can add them by clicking the Add Sales Agent on the opportunities action panel.
+        </div>
+    </lightning-card>
+</template>

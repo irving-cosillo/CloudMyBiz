@@ -1,0 +1,4 @@
+*.log
+.forceignore
+/config
+/.sfdx

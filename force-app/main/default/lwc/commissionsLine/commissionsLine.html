@@ -1,0 +1,23 @@
+<template>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="3" padding="around-small">
+            <lightning-input type="text" label="Name" value={agentName} variant="label-hidden" disabled></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="8">
+            <lightning-layout>
+                <lightning-layout-item size="4" padding="around-small">
+                    <lightning-input type="number" label="Default Rate" value={defaultRate} variant="label-hidden" formatter="percent" step="0.01" disabled></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" padding="around-small">
+                    <lightning-input type="number" label="Rate" value={opportunityRate} variant="label-hidden" formatter="percent" step="0.01" onchange={handleChange}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" padding="around-small">
+                    <lightning-input type="number" label="Expected Commission" value={commissionAmount} variant="label-hidden" formatter="currency" step="0.01" disabled></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+        <lightning-layout-item size="1" padding="around-small">
+            <lightning-button-icon icon-name="utility:delete" alternative-text="Delete" title="Delete" onclick={handleDelete}></lightning-button-icon>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
